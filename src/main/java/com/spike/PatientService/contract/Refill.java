@@ -1,4 +1,4 @@
-package com.spike.PatientService.model;
+package com.spike.PatientService.contract;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

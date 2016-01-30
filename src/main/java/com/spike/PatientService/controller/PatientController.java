@@ -1,6 +1,6 @@
 package com.spike.PatientService.controller;
 
-import com.spike.PatientService.model.Patient;
+import com.spike.PatientService.contract.Patient;
 import com.spike.PatientService.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

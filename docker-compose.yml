@@ -1,0 +1,8 @@
+postgres:
+  image: postgres:9.5.0
+  environment:
+   - POSTGRES_PASSWORD=dev
+   - POSTGRES_USER=dev
+   - POSTGRES_DB=dev
+  ports:
+    - "5432:5432"

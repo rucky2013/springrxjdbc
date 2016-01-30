@@ -16,8 +16,12 @@ public class PatientService {
         return patientRepository.getAllPatients().map(p -> mapPatient(p));
     }
 
-    private Patient mapPatient(com.spike.PatientService.model.Patient patient) {
-        return new Patient(patient.id(), patient.firstName(), patient.lastName(), null);
+    private Patient mapPatient(com.spike.PatientService.model.Patient patientModel) {
+        Patient patient = new Patient();
+        patient.setId(patientModel.id());
+        patient.setFirstName(patientModel.firstName());
+        patient.setLastName(patientModel.lastName());
+        return patient;
     }
 
 }

@@ -1,0 +1,1 @@
+psql -h 127.0.0.1 -U dev -a -f create_tables.sql

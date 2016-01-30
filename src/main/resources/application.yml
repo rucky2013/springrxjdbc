@@ -2,3 +2,12 @@ db:
   connection: jdbc:postgresql://127.0.0.1:5432/dev
   username: dev
   password: dev
+
+dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+
+dataSource:
+  user: dev
+  password: dev
+  databaseName: dev
+  portNumber: 5432
+  serverName: 127.0.0.1

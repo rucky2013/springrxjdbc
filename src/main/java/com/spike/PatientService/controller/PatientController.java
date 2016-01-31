@@ -26,41 +26,21 @@ public class PatientController {
     @Autowired
     AddressService addressService;
 
-    @Value("${response.timeout}")
-    private long timeOut;
+    @Autowired
+    ObservableToDeferredResult observableToDeferredResult;
 
     @RequestMapping("/patient")
     public DeferredResult<List<Patient>> getAllPatients(){
         Observable<Patient> allPatients = patientService.getAllPatients();
-        DeferredResult<List<Patient>> patientDeferredResult = getDeferredResult(allPatients);
+        DeferredResult<List<Patient>> patientDeferredResult = observableToDeferredResult.getListAsDeferredResult(allPatients);
         return patientDeferredResult;
     }
 
     @RequestMapping("/patient/{id}/addresses")
     public DeferredResult<List<Address>> getAddressesByPatient(@PathVariable("id") int patientId){
         Observable<Address> addressesForPatient = addressService.getAddressesForPatient(patientId);
-        DeferredResult<List<Address>> addressesDeferredResult = getAddressesDeferredResult(addressesForPatient);
+        DeferredResult<List<Address>> addressesDeferredResult = observableToDeferredResult.getListAsDeferredResult(addressesForPatient);
         return addressesDeferredResult;
     }
-
-    private DeferredResult<List<Address>> getAddressesDeferredResult(Observable<Address> addressesForPatient) {
-        DeferredResult<List<Address>> deferredResult = new DeferredResult<>(timeOut);
-        List<Address> addresses = new ArrayList<>();
-        addressesForPatient.subscribe(add -> addresses.add(add),
-                error -> deferredResult.setErrorResult(error),
-                () -> deferredResult.setResult(addresses));
-        return deferredResult;
-    }
-
-    private DeferredResult<List<Patient>> getDeferredResult(Observable<Patient> allPatients) {
-        DeferredResult<List<Patient>> patientDeferredResult = new DeferredResult<>(timeOut);
-        List<Patient> patients = new ArrayList<>();
-        allPatients.subscribe(patient -> patients.add(patient),
-                error -> patientDeferredResult.setErrorResult(error),
-                () ->  patientDeferredResult.setResult(patients));
-
-        return patientDeferredResult;
-    }
-
 
 }

@@ -9,8 +9,6 @@ public class AllPatientCommandFactory extends CommandFactory {
     @Value("${allPatientCommand.timeout}")
     private int timeOut;
 
-
-
     public AllPatientCommand createCommand(){
         return new AllPatientCommand(dataSource, timeOut);
     }

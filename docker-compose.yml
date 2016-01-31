@@ -6,3 +6,8 @@ postgres:
    - POSTGRES_DB=dev
   ports:
     - "5432:5432"
+hystrix:
+  image: arthurtsang/docker-hystrix-dashboard
+  net: "host"
+  ports:
+    - "8080:8080"

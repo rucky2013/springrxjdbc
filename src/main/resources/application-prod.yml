@@ -1,0 +1,3 @@
+---
+allPatientCommand:
+  timeout: 40000

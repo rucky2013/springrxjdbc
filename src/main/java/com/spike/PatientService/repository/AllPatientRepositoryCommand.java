@@ -1,11 +1,11 @@
 package com.spike.PatientService.repository;
 
 import com.github.davidmoten.rx.jdbc.Database;
-import com.netflix.hystrix.HystrixCommand;
-import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.*;
 import com.spike.PatientService.model.Patient;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +20,11 @@ public class AllPatientRepositoryCommand extends HystrixCommand<List<Patient>> {
     @Autowired
     private HikariDataSource ds;
 
-    public AllPatientRepositoryCommand() {
-        super(HystrixCommandGroupKey.Factory.asKey("PatientRepository"));
+    @Autowired
+    public AllPatientRepositoryCommand(@Value("${allPatientCommand.timeout}")int timeOut) {
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("PatientRepository"))
+                .andCommandKey(HystrixCommandKey.Factory.asKey("AllPatientsCommand"))
+                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("AllPatientsPool")));
     }
 
     @Override

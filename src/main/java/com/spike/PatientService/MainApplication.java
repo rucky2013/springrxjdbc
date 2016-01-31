@@ -1,10 +1,12 @@
 package com.spike.PatientService;
 
+import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServlet;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.embedded.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 
 import java.util.Properties;
@@ -35,6 +37,10 @@ public class MainApplication {
         return new HikariDataSource(config);
     }
 
+    @Bean
+    public ServletRegistrationBean hystrixStreamServlet(){
+        return new ServletRegistrationBean(new HystrixMetricsStreamServlet(), "/hystrix.stream");
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(MainApplication.class, args);

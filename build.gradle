@@ -38,4 +38,5 @@ dependencies {
     compile 'org.projectlombok:lombok:1.16.6'
     compile 'org.postgresql:postgresql:9.4.1207.jre7'
     compile 'com.zaxxer:HikariCP:2.4.3'
+    compile 'com.netflix.hystrix:hystrix-metrics-event-stream:1.4.23'
 }

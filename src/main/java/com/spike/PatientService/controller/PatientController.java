@@ -32,15 +32,13 @@ public class PatientController {
     @RequestMapping("/patient")
     public DeferredResult<List<Patient>> getAllPatients(){
         Observable<Patient> allPatients = patientService.getAllPatients();
-        DeferredResult<List<Patient>> patientDeferredResult = observableToDeferredResult.getListAsDeferredResult(allPatients);
-        return patientDeferredResult;
+        return observableToDeferredResult.getListAsDeferredResult(allPatients);
     }
 
     @RequestMapping("/patient/{id}/addresses")
     public DeferredResult<List<Address>> getAddressesByPatient(@PathVariable("id") int patientId){
         Observable<Address> addressesForPatient = addressService.getAddressesForPatient(patientId);
-        DeferredResult<List<Address>> addressesDeferredResult = observableToDeferredResult.getListAsDeferredResult(addressesForPatient);
-        return addressesDeferredResult;
+        return observableToDeferredResult.getListAsDeferredResult(addressesForPatient);
     }
 
 }

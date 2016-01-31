@@ -3,6 +3,7 @@ package com.spike.PatientService.controller;
 import com.spike.PatientService.contract.Patient;
 import com.spike.PatientService.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.async.DeferredResult;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@Scope("prototype")
 public class PatientController {
 
     @Autowired

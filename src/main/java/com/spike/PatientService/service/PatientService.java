@@ -1,23 +1,23 @@
 package com.spike.PatientService.service;
 
 import com.spike.PatientService.contract.Patient;
-import com.spike.PatientService.repository.AllPatientRepositoryCommand;
+import com.spike.PatientService.repository.AllPatientCommand;
+import com.spike.PatientService.repository.AllPatientCommandFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import rx.Observable;
 
 import java.util.List;
 
 @Service
-@Scope("prototype")
 public class PatientService {
 
     @Autowired
-    private AllPatientRepositoryCommand allPatientRepositoryCommand;
+    private AllPatientCommandFactory commandFactory;
 
     public Observable<Patient> getAllPatients(){
-        List<com.spike.PatientService.model.Patient> patients = allPatientRepositoryCommand.execute();
+        AllPatientCommand allPatientCommand = commandFactory.createCommand();
+        List<com.spike.PatientService.model.Patient> patients = allPatientCommand.execute();
         return Observable.from(patients).map(p -> mapPatient(p));
     }
 

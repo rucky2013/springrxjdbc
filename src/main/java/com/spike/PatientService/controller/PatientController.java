@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@Scope("prototype")
 public class PatientController {
 
     @Autowired

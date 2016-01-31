@@ -24,7 +24,9 @@ public class AllPatientRepositoryCommand extends HystrixCommand<List<Patient>> {
     public AllPatientRepositoryCommand(@Value("${allPatientCommand.timeout}")int timeOut) {
         super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("PatientRepository"))
                 .andCommandKey(HystrixCommandKey.Factory.asKey("AllPatientsCommand"))
-                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("AllPatientsPool")));
+                .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("AllPatientsPool"))
+                .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
+                        .withExecutionTimeoutInMilliseconds(timeOut)));
     }
 
     @Override

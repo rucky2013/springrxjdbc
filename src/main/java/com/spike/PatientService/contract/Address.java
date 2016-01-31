@@ -13,4 +13,5 @@ public class Address{
     private String city;
     private String zipCode;
     private String state;
+    private String type;
 }

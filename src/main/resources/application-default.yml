@@ -1,3 +1,6 @@
 ---
 allPatientCommand:
   timeout: 20000
+
+AddressesByPatientCommand:
+  timeout: 20000

@@ -7,5 +7,8 @@ dataSource:
   portNumber: 5432
   serverName: 127.0.0.1
 
+response:
+  timeout: 9000
+
 server:
   port: 8081
